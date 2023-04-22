@@ -1,0 +1,348 @@
+\documentclass[12pt, a4paper, oneside, fontset=windows]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, appendix, bm, graphicx, hyperref, mathrsfs}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\title{\textbf{最优化第二次作业}}
+\author{大数据001\\郅啸淇\\学号：2184114639}
+\date{\today}
+\linespread{1.5}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{example}[theorem]{例}
+\newtheorem{proposition}[theorem]{命题}
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\section{强凸函数相互等价性}
+\subsection{Monotonicity}
+因为$\triangledown g(x)$为单调函数，故有$(\triangledown g(y) - \triangledown g(x))^{T}(y - x) \geq  0$
+
+代入$g(x) = f(x) - \frac{m}{2}x^{T}x$，有$(\triangledown f(y) - my -\triangledown f(x) + mx)^{T}(y-x) \geq 0$
+
+即$((\triangledown f(y) - \triangledown f(x)) - m(y -x))^{T}(y-x) \geq 0$
+
+即$(\triangledown f(y) - \triangledown f(x))^{T} \geq m\| y - x\|^{2}_{2} $
+
+Monotonicity得证
+\subsection{Jensen's Inequality}
+由$g(x)$为凸函数，有$g(\theta x + (1-\theta )y) \leq \theta g(x) + (1-\theta)g(y)$，代入$g(x) = f(x) - \frac{m}{2}x^{T}x$有
+
+$f(\theta x + (1-\theta)y) \leq \theta f(x) + (1-\theta) f(y) - \frac{m}{2}(\theta x^{T}x + (1-\theta) y^{T}y) + \frac{m}{2}(\theta x + (1-\theta)y)^{T}(\theta x + (1-\theta)y)$
+
+即为$f(\theta x + (1-\theta)y) \leq \theta f(x) + (1-\theta) f(y) - \frac{m}{2}(1-\theta)\theta(x^{T}x + y^{T}y -(xy^{T}+x^{T}y))$
+
+即为$f(\theta x + (1-\theta)y) \leq \theta f(x) + (1-\theta) f(y) - \frac{m}{2}(1-\theta)\theta \|x - y\|^{2}_{2}$
+
+Jensen's Inequality得证
+\subsection{二阶强凸条件}
+因为$g(x)$为凸函数，故有$\triangledown ^{2} g(x) \geq 0$
+
+代入$g(x) = f(x) - \frac{m}{2}x^{T}x$，有$\triangledown^{2}(f(x) - \frac{m}{2}x^{T}x) = \triangledown^{2} f(x) - mI \geq 0$
+
+即$\triangledown ^{2} f(x) \geq mI$，得证
+\section{无穷范数的对偶范数是一范数}
+对偶范数定义：$\Vert u\Vert_{*}=\underset{v\neq 0}{sup}\frac{u^{T}v}{\Vert v\Vert}=\underset{\Vert v\Vert=1}{sup}u^{T}v$
+
+再结合霍尔德不等式，若有$\frac{1}{p}+\frac{1}{q}=1$
+
+则$z^{T}x\leq \Vert x \Vert_{p} \Vert z \Vert_{q}$
+
+$\Vert z\Vert_{*}=\underset{x\neq 0}{sup}\frac{z^{T}x}{\Vert x\Vert}_{p}=\Vert z\Vert_{q}$
+
+当$p=1$时，根据霍尔德不等式，$q=\infty $
+
+得证
+\section{临近算子}
+\subsection{二次函数}
+$u = prox^{th}(x)$最优性条件为
+
+$x - u \in t\partial h(x)$
+
+即$x -u \in t(Au + b)$
+
+即$x-u = tAu + tb$
+
+得到$u = (x-tb)(I+tA)^{-1}$
+\subsection{负自然对数的和}
+有$h(x) = -\sum_{n = 1}^{n} lnx_{i}$，$u_{i} = prox_{th}(x_{i})$最优性条件为
+
+$x- u \in t\partial h(u_{i})$
+
+即$x - u_{i}+\frac{t}{u_{i}} = 0$，解得$u_{i} = \frac{x_{i} + \sqrt{x_{i}^{2} + 4t} }{2}$
+\section{临近算子基本运算规则}
+\subsection{Linear Combination}
+$prox_{f}(x) = \arg\min_{z}\{ \frac{1}{2} \| z- x\| ^{2}_{2} + f(z)\}$
+
+代入$f(x) = ag(x) + b$，有$prox_{f(x)} = \arg\min_{z}\{ \frac{1}{2} \| z- x\| ^{2}_{2} + ag(z) + b\}$
+
+即$f(x) = ag(x) + b$，$prox_{f(x)} = \arg\min_{z}\{ \frac{1}{2} \| z- x\| ^{2}_{2} + ag(z)\}=prox_{ag}(x)$
+
+得证
+\subsection{Affine Addition}
+$prox_{f}(x) = \arg\min_{z}\{ \frac{1}{2} \| z - x\| ^{2}_{2} + a^{T}z +g(z) \}$
+
+$= \arg\min_{z}\{ \frac{1}{2} \| z\|^{2}_{2} - <z,x> + a^{T}z + g(z) \}$
+
+$ = \arg\min_{z}\{ \frac{1}{2} \| z\|^{2}_{2} - <z,x-a> + g(z) \}$
+
+$= \arg\min_{z}\{ \frac{1}{2} \| z - (x-a)\|^{2}_{2} + g(z) \}$
+
+$= prox_{g}(x-a)$
+
+得证
+\subsection{Quadratic Addition}
+$prox_(f)(x) = \arg\min_{z}\{ \frac{1}{2} \| z - x\| ^{2}_{2} +g(z)+\frac{\rho }{2} \| z - a\|_{2}^{2}  \}$
+
+$= \arg\min_{z}\{ \frac{1 + \rho}{2} \| z - x\| ^{2}_{2}- <z,x+\rho a > + g(z)\}$
+
+$= \arg\min_{z}\{ \frac{1 + \rho}{2} \| z - x\| ^{2}_{2} - \frac{1}{1 + \rho}<z,x+\rho  a> + \frac{1}{1+\rho}g(z) \}$
+
+$ = \arg\min_{z}\{ \frac{1 + \rho}{2} \| z - (\frac{1}{1+\rho}x + \frac{\rho}{1 + \rho}a)\| ^{2}_{2}+\frac{1}{1 + \rho}g(z)\}$
+
+$ = prox_{\frac{1}{1+\rho}g}(\frac{1}{1+\rho}x + \frac{\rho}{1 + \rho}a)$
+
+得证
+
+\subsection{Scaling and Translation}
+如果$f(\mathbf  x )=g (a\mathbf  x +\mathbf b)+$有$ a\neq 0$ 那么
+
+$prox_{f}\left ( \mathbf x \right )=arg\min_{z}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+f \left (\mathbf z \right )\right \}$
+
+$=arg\min_{z}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+g\left (a\mathbf z+\mathbf b \right )\right \}$
+
+$=arg\min_{z}\left \{ \frac{1}{2}\Vert \mathbf z \Vert _2^{2}-\left \langle \mathbf z ,\mathbf x \right \rangle+g\left (a\mathbf z+\mathbf b \right )\right \}$
+
+若$\mathbf t=a\mathbf z+b$那么
+
+$\mathbf t=arg\min_{z}\left \{ \frac{1}{2}\Vert \frac{\mathbf t-\mathbf b}{a} - \mathbf x \Vert _2^{2}+g \left (\mathbf t \right )\right \}$
+
+$=arg\min_{z}\left \{ \frac{1}{2a^{2}}\Vert \mathbf t - \left ( a\mathbf x +\mathbf b \right )\Vert _2^{2}+g \left (\mathbf t \right )\right \}$
+
+$=arg\min_{z}\left \{ \frac{1}{2}\Vert \mathbf t - \left ( a\mathbf x +\mathbf b \right )\Vert _2^{2}+a^{2}g \left (\mathbf t \right )\right \}$
+
+$=prox_{a^{2}g}\left ( a\mathbf x+\mathbf b\right )$
+
+$prox_{f}\left ( \mathbf x \right )=\mathbf z=\frac{\mathbf t-\mathbf b}{a}=\frac{1}{a}\left [prox_{a^{2}g}\left ( a\mathbf x+\mathbf b\right )-\mathbf b  \right ]$
+
+得证
+\section{优化方法总结}
+
+% Please add the following required packages to your document preamble:
+% \usepackage[normalem]{ulem}
+% \useunder{\uline}{\ul}{}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{llll}
+    \hline
+    {\ul } & 梯度法                                       & 次梯度法                                          & 近似点梯度法                                    \\ \hline
+    步数     & $O\left ( \frac{1}{k} \right )$           & $O\left ( {k}^{\frac{1}{2}} \right )$         & $O\left ( \frac{1}{k} \right )$           \\
+    收敛速率   & $O\left ( \frac{1}{\varepsilon} \right )$ & $O\left ( \frac{1}{\varepsilon^{2}} \right )$ & $O\left ( \frac{1}{\varepsilon} \right )$ \\
+    若强凸    & $O\left ( log\left ( \frac{1}{\varepsilon  } \right ) \right )$                          &$O\left ( \frac{1}{\varepsilon} \right )$                        &$O\left ( log\left ( \frac{1}{\varepsilon  } \right ) \right )$                                           \\ \hline
+    \end{tabular}
+    \end{table}
+\section{共轭函数总是凸函数}
+
+可以看成是一系列关于 y 的凸函数取上确界
+
+等价于要证明：$f^{*}\left ( \theta t_{1}+\left ( 1-\theta  \right )t_{2} \right )\leq \theta f^{*}\left ( t_{1} \right )+\left ( 1-\theta  \right )f^{*}\left ( t_{2} \right )$
+
+代入共轭函数的定义，上述不等式等价于:
+
+$\underset{x \in  dom\left ( f \right )}{max}\left \{\left ( \theta t_{1}+\left ( 1-\theta  \right )t_{2} \right )x-f\left ( x \right )  \right \}\leq \theta \underset{x \in  dom\left ( f \right )}{max}\left \{t_{1} x-f\left ( x \right )  \right \} +\left ( 1-\theta  \right ) \underset{x \in  dom\left ( f \right )}{max}\left \{t_{2} x-f\left ( x \right )  \right \}$
+
+左式等价于：
+
+$\underset{x \in  dom\left ( f \right )}{max}\left \{ \theta \left ( t_{1}x-f\left ( x \right ) \right )+\left ( 1-\theta  \right ) \left ( t_{2}x-f\left ( x \right ) \right ) \right \}$
+
+假设在$x_{0}$取到最大值，即：$\theta \left ( t_{1}x_{0}-f\left ( x_{0} \right ) \right )+\left ( 1-\theta  \right ) \left ( t_{2}x_{0}-f\left ( x_{0} \right ) \right ) $
+
+又：
+
+$\theta \left ( t_{1}x_{0}-f\left ( x_{0} \right ) \right )\leq  \underset{x \in  dom\left ( f \right )}{max}\left \{ \theta \left ( t_{1}x_{0}-f\left ( x_{0} \right ) \right ) \right \} $
+
+$\left ( 1-\theta  \right ) \left ( t_{2}x_{0}-f\left ( x_{0} \right ) \right )\leq  \underset{x \in  dom\left ( f \right )}{max}\left \{ \left ( 1-\theta  \right )  \left ( t_{2}x_{0}-f\left ( x_{0} \right ) \right ) \right \} $
+
+所以原式得证
+
+\section{Lagrange对偶问题总是凸优化问题}
+原问题：
+
+$\underset{x}{min}f\left ( x \right )$
+
+$s.t.\; g_{i}\left ( x \right )\leq 0,i=1,2,\cdots \cdots ,m$
+
+$h_{j}\left ( x \right )=0,j=1,2,\cdots \cdots ,p$
+
+进行一次拉格朗日乘子法，转换为:
+
+$\underset{x,\lambda ,\nu }{min}L\left ( x,\lambda ,\nu  \right )=f\left ( x \right )+\sum_{i=1}^{m}\lambda _{i}g_{i}\left ( x \right )+\sum_{i=1}^{p}\nu  _{i}h_{i}\left ( x \right )$
+
+再求一次对偶问题：
+
+$\underset{\lambda ,\nu }{max}\underset{x }{min}L\left ( x,\lambda ,\nu  \right )$
+
+$s.t.\; \lambda \geq 0$
+
+首先约束条件一定是凸函数，因为它是线性的，也就是说其实我们现在只要证明:$\underset{x }{min}L\left ( x,\lambda ,\nu  \right )$是凸函数即可
+
+$-\underset{x }{min}L\left ( x,\lambda ,\nu  \right )=-k_{1}\lambda -k_{2}\nu -b$ if $k_{1}=g\left ( x \right ),k_{2}=h\left ( x \right ),b=f\left ( x \right )$
+
+上面跟x xx有关的全部是一个定值。这就是一个线性变化，或者说仿射变换。然后就用到了我们前面用到的那个重要定理：仿射集一定是凸集。所以说这是一个凸函数。
+
+\section{等式约束范数极小化}
+$f_{0}^{*}\left ( y \right )=\underset{x}{sup}\left ( y^{T} x -\Vert x \Vert\right )$
+
+根据：$\Vert v \Vert_{*}=sup_{\Vert u \Vert\leq 1}u^{T}v is dual norm of \Vert \cdot  \Vert$
+
+又：$\Vert x \Vert=\underset{x}{sup}\left ( y^{T} x \right ),\Vert y  \Vert_{*}\leq 1$
+
+如果$\Vert y  \Vert_{*}\leq 1,  y^{T} x \leq \Vert x  \Vert ,$ 显然x=0时取等号
+
+又：$\Vert y \Vert_{*}=\underset{x}{sup}\left ( x^{T} y \right )> 1,\Vert x  \Vert\leq 1$
+
+如果$\Vert y  \Vert_{*}> 1,  \exists x , \Vert x \Vert \leq 1,then x^{T}y>1$
+
+$f_{0}^{*}\left ( y \right )\geq y^{T}\left ( tx \right )-\Vert tx  \Vert=t\left ( y^{T}x-\Vert x  \Vert \right )> 0$
+
+$t\rightarrow \infty, f_{0}^{*}\left ( y \right )\rightarrow \infty$
+
+所以:$f_{0}^{*}\left ( y \right )=\left\{\begin{matrix}
+    0\; \;\Vert y \Vert_{*}\leq 1 \\ 
+    \infty\; \; otherwise
+    \end{matrix}\right.$
+等式约束范数极小化得证
+\section{SVM的KKT条件}
+
+原问题
+
+
+\begin{equation}
+\begin{aligned}
+    \min\underset{\beta,\beta_{0},\xi}{} &\frac{1}{2} \| \beta\|_{2}^{2} + C\sum_{i = 1}^{n} \xi_{i} \\
+    s.t. &\xi_{i} \geq 0 i = 1,2,3...n\\
+         &y_{i}(x_{i}^{T}\beta +\beta_{0}) \geq 1 - \xi_{i}
+\end{aligned}
+\end{equation} 
+
+稳定性条件:$0\in \partial_{\beta,\xi}(\frac{1}{2} \|\beta\|_{2}^{2} + C\sum_{i = 1}^{n} \xi_{i} + u_{i}(1-\xi_{i} -y_{i}(x_{i} ^{T}\beta +\beta_{0})+\xi_{i}))$
+
+互补松弛条件:$u_{i}(1-\xi_{i} -y_{i}(x_{i} ^{T}\beta +\beta_{0})) = 0$
+
+原可行性:$1-\xi_{i} -y_{i}(x_{i} ^{T}\beta +\beta_{0}) \leq 0$
+
+对偶可行性:$u_i \geq 0$
+
+\section{Rigde Regression的对偶问题}
+
+原岭回归问题，引入约束条件
+
+\begin{equation}
+\begin{aligned}
+        \min\underset{x}{} &\frac{1}{2} \| Ax - b\|_{2}^{2} + \| x\|_2^2 \\
+        s.t. &x = z\\
+\end{aligned}
+\end{equation}
+有$g(u) = \min_x \frac{1}{2} \|Ax -b \|_2^2 + \| z\|_2^2 + u^T(z-x)$
+
+$=\min_x \frac{1}{2} \| Ax - b\|_2^2 - u^{T}x + \|z\|_2^2 + u^{T}z $
+
+$=\min_x \frac{1}{2} \| Ax - b\|_2^2 - ((A^{-1})^{T}u)^T(Ax - b) +\| z\|_2^2 + u^{T}z$
+
+$= - \| (A^{-1})^Tu\|_{2*}^2 - \| -u\|_{2*}^2 - u^TA^{-1}b$
+
+若有$\| (A^{-1})^Tu \| _* \leq 1, \| -u\|_* \leq 1$
+
+则$g(u) = -u^TA^{-1}b$
+
+对偶问题则为$\max_{u} -u^TA^{-1}b$
+
+\section{逻辑回归loss为凸函数}
+逻辑岭回归
+
+$\min_{\beta_0, \beta} \sum_{i = 1}^{n}[-y_i(\beta_0 + \beta^{T}x_i) + log(1+e^{\beta_0 + \beta^Tx_i})] + \lambda \|\beta \|_2^2$
+
+其中$y_i \in \{ 0,1\}, x_i\in R^p$
+
+记$R = -y_i(\beta_0 + \beta^{T}x_i) + log(1+e^{\beta_0 + \beta^Tx_i})$
+
+$\frac{\partial R}{\partial \beta_0} = -\sum_{i = 1}^{n} y_i + \sum_{i = 1}^{n} \frac{e^{\beta_0 + \beta^Tx_i}}{1+e^{\beta_0 + \beta^Tx_i}}$
+
+$\frac {\partial^2 R }{\partial \beta_0^2} = \sum_{i = 1}^{n} \frac {e^{\beta_0 + \beta^Tx_i}}{(1+e^{\beta_0 + \beta^Tx_i})^2}$
+
+$\frac{\partial R}{\partial \beta} = - \sum_{i = 1}{n}x_iy_i + \sum_{i = 1}^{n} \frac{x_ie^{\beta_0 + \beta^Tx_i}}{1+e^{\beta_0 + \beta^Tx_i}}$\
+
+$\frac{\partial^2 R}{\partial \beta^2} = \sum_{i = 1}^{n} \frac{x_ie^{\beta_0 + \beta^Tx_i}}{(1+e^{\beta_0 + \beta^Tx_i})^2}$
+
+$\frac{\partial^2 R}{\partial \beta_0 \partial \beta} = \frac{\partial^2 R}{\partial \beta_0 \partial \beta_0} = \sum_{i = 1}^{n} \frac {x_ie^{\beta_0 + \beta^Tx_i}}{(1+e^{\beta_0 + \beta^Tx_i})^2}$
+
+设$t_i = \frac{e^{\beta_0 + \beta^Tx_i}}{(1+e^{\beta_0 + \beta^Tx_i})^2} \geq 0$，则逻辑岭回归Hessian矩阵为
+
+$
+H=
+\begin{pmatrix}
+  \sum_{i = 1}^{n} t_i  ,& \sum_{i=1}^{n} x_it_i\\ 
+  \sum_{i =1}^{n} x_it_i ,& \sum_{i=1}^{n}x_i^2t_i
+\end{pmatrix}
+$
+
+$y^THy = \sum_{i=1}^{n} (x_i +1)^2t_iy^Tt \geq 0$
+
+即Hessian矩阵半正定，故凸函数得证。
+
+\section{Self-Concordant函数性质与实例}
+\subsection{自和谐函数性质}
+已知为$f(x)$自和谐函数，则做仿射变换$x = ay+b$，令$f(y) = f(ay+b)$
+
+$f^{''}(y) = \alpha^2f^{''}(x), f^{'''}(y) = \alpha^3f^{'''}(x)$
+
+$f(x)$为自和谐函数，有
+
+$|f^{'''}(x)| \leq 2(f^{''}(x)^{\frac{3}{2}})$
+
+两边同时乘$\alpha^3 (\alpha > 0)$，得
+
+$|\alpha^3 f^{'''}(x)| \leq 2(\alpha^2f^{''}(x)^{\frac{3}{2}})$
+
+$|f^{'''}(x)| \leq |2(f^{''}(y))^{\frac {3}{2}}|$
+
+自和谐函数仿射变换之后仍为自和谐函数，affine function成立
+\subsection{自和谐函数实例}
+\subsubsection{第一个}
+
+内生函数是关于$x$的仿射变换，为自和谐函数，外层函数也为自和谐函数，故整个函数为自和谐函数。
+
+\subsubsection{第二个}
+
+令$g(t) = f(X + tV)$经过分解
+
+$g(t) = -logdet(X + tV)$
+
+$=-logdetX -logdet(I+tX^{-\frac{1}{2}}VX^{-\frac{1}{2}})$
+
+$=-logdetX - \sum_{i =1}^{n} log(1 + t\lambda_i)$，$\lambda_i$为$X^{-\frac{1}{2}}VX^{-\frac{1}{2}}$的特征值
+
+$g(t)$内外层函数均为自和谐函数，故$g(t)$为自和谐函数，故原函数为自和谐函数。
+\subsubsection{第三个}
+$f(x) = -log(y^2 - x^Tx)$
+
+$= -log(y^2-x^Tx)-logx-log\frac{1}{x}$
+
+$= -log(\frac{y^2}{x}) - logx$
+
+令$g(x) = \frac{y^2}{x} - x$
+
+$g^{'}(x) = - 1-\frac{y^2}{x^2}$
+
+$g^{''}(x) = \frac{2y^T}{x^3}$
+
+$g^{'''}(x) = -\frac{6y^2}{x^4}$
+
+有$|g^{'''}(x)| \leq 3\frac{g^{''}(x)}{x}$
+
+由此$f(x)$为自和谐函数
+\end{document}

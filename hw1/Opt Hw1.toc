@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}保凸运算}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}保凸运算1}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}保凸运算2}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}保凸运算3}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}保凸运算4}{4}{subsection.1.4}%
+\contentsline {section}{\numberline {2}无穷范数满足范数性质}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}正定性}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}齐次性}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}三角不等式}{4}{subsection.2.3}%
+\contentsline {section}{\numberline {3}向量范数为凸函数}{5}{section.3}%
+\contentsline {section}{\numberline {4}$log-sum-exp$函数为凸函数}{5}{section.4}%
+\contentsline {section}{\numberline {5}严格凸函数极小值唯一}{5}{section.5}%
+\contentsline {section}{\numberline {6}一阶必要性定理证明}{6}{section.6}%

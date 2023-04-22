@@ -1,0 +1,189 @@
+\documentclass[12pt, a4paper, oneside, fontset=windows]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, appendix, bm, graphicx, hyperref, mathrsfs}
+
+\title{\textbf{最优化第一次作业}}
+\author{付星桐}
+\date{\today}
+\linespread{1.5}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{example}[theorem]{例}
+\newtheorem{proposition}[theorem]{命题}
+
+\renewcommand{\abstractname}{\Large\textbf{摘要}}
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+
+\setcounter{page}{0}
+\maketitle
+\thispagestyle{empty}
+
+
+\begin{abstract}
+    忆梅下西洲，折梅寄江北。 
+    \par\textbf{关键词：}爱情; 诗歌. 
+\end{abstract}
+
+
+\newpage
+% 添加目录
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\newpage
+\section{作业}
+
+\subsection{保凸运算1}
+$aC+b=\left \{  x|x=ay+b,y\in C  \right \} $
+
+$\forall x{_{1}}^{},x{_{2}}^{}\in aC+b,\exists y{_{1}}^{},y{_{2}}^{}\in C $
+
+使$ \begin{cases}
+    & \text{  } x{_{1}}^{}=ay{_{1}}^{}+b \\ 
+    & \text{  } x{_{2}}^{}= ay{_{2}}^{}+b
+    \end{cases}$
+
+$ \forall \theta \in \left [  0,1\right ]$
+
+$\theta x{_{1}}^{}+\left (1- \theta \right )x{_{2}}^{}=\theta \left (  ay{_{1}}^{}+b \\\right ) +\left (1- \theta \right ) \left ( ay{_{2}}^{}+b \\ \right )
+=a\left [ \theta y{_{1}}^{}+\left (1- \theta \right )y{_{2}}^{}\right ]+b $
+
+又$\theta y{_{1}}^{}+\left (1- \theta \right )y{_{2}}^{}\in C$
+
+所以原式=$a\left [ \theta y{_{1}}^{}+\left (1- \theta \right )y{_{2}}^{}\right ]+b\in aC+b$
+
+即aC+b也是凸集
+
+\subsection{保凸运算2}
+$g(x)=f(Ax+b) ,dom\; g=\left \{  x|Ax+b\in  dom\; f  \right \}$
+
+证明：
+
+令$x,y\in dom\; g,0\leq \theta \leq 1;$
+
+$g(\theta x+\left (1- \theta \right )y) =f(\theta Ax+\left (1- \theta \right )Ay+b)=f(\theta \left ( Ax+b \right )+\left (1- \theta \right )\left ( Ay+b \right ))\leq \theta f(Ax+b)+\left (1- \theta \right )f(Ay+b)=\theta g(x)+\left (1- \theta \right ) g(y)$
+  
+根据凸函数定义,g(x)是凸函数，仿射映射得证
+   
+\subsection{保凸运算3}
+$f(x)=g(Ax+b) ,dom\; f=\left \{  x|Ax+b\in  dom\; g  \right \}$
+
+证明：
+
+令$x,y\in dom\; f,0\leq \theta \leq 1;$
+
+已知$g(\theta x+\left (1- \theta \right )y) \leq \theta g(x)+\left (1- \theta \right ) g(y)$
+
+又$g(\theta x+\left (1- \theta \right )y)=f(\theta \left ( Ax+b \right )+\left (1- \theta \right )\left ( Ay+b \right )),
+\theta g(x)+\left (1- \theta \right ) g(y)=\theta f(Ax+b)+\left (1- \theta \right )f(Ay+b)$
+
+所以易得：$f(\theta \left ( Ax+b \right )+\left (1- \theta \right )\left ( Ay+b \right ))\leq \theta f(Ax+b)+\left (1- \theta \right )f(Ay+b)$
+
+根据凸函数定义,f(x)是凸函数，得证
+   
+\subsection{证明无穷范数满足范数的三个性质}
+证明：
+
+(1)正定性
+
+$\Vert x \Vert_\infty =\underset{i}{max}\left | x_{i} \right |\geq 0$
+
+$if \;\Vert x \Vert_\infty = \underset{i}{max}\left | x_{i} \right |=0,$
+
+$0\leq \left | x_{i} \right |\leq \underset{i}{max}\left | x_{i} \right |=0$
+
+$so\;  \left | x_{i} \right |=0$
+
+$so:if \;\Vert x \Vert_\infty = 0,only\; while \; x_{i}=0$
+
+(2)奇次性
+
+$\Vert tx \Vert_\infty=\underset{i}{max}\left | tx_{i} \right |=\left | t \right |\underset{i}{max}\left | x_{i} \right |
+=\left | t \right |\Vert x \Vert_\infty$
+
+(3)三角不等式
+
+$\Vert x+y \Vert_\infty=\underset{i}{max}\left | x_{i}+y_{i} \right |,
+\Vert x \Vert_\infty=\underset{i}{max}\left | x_{i} \right |,
+\Vert y \Vert_\infty=\underset{i}{max}\left | y_{i} \right |,$
+
+$\Vert x+y \Vert_\infty^{2}-\left (  \Vert x \Vert_\infty+\Vert y \Vert_\infty\right )^{2}=
+\left ( \underset{i}{max}\left | x_{i}+y_{i} \right | \right )^{2}-\left (  \underset{i}{max}\left | x_{i} \right |+\underset{i}{max}\left | y_{i} \right |\right )^{2}=\underset{i}{max}\; \left ( x_{i}+y_{i} \right )^{2}-\underset{i}{max}\; x_{i}^{2}-\underset{i}{max}\; y_{i}^{2}-2\underset{i}{max}\left | y_{i} \right |\underset{i}{max}\left | x_{i} \right |=2\underset{i}{max}\;x_{i}y_{i}-2\underset{i}{max}\left | y_{i} \right |\underset{i}{max}\left | x_{i} \right |\leq 0$
+
+所以$\Vert x+y \Vert_\infty\leq \left (  \Vert x \Vert_\infty+\Vert y \Vert_\infty\right )$
+
+\subsection{证明向量范数均是凸函数}
+
+$f(x)=\Vert x \Vert$
+
+$\forall \theta \in \left [  0,1\right ],\forall x,y\in domf$
+
+$f(\theta x+\left (1- \theta \right )y)=\Vert \theta x+\left (1- \theta \right )y \Vert\leq \Vert \theta x\Vert+\Vert \left (1- \theta \right )y\Vert=\theta \Vert x\Vert+\left (1- \theta \right )\Vert y \Vert=\theta f(x)+\left (1- \theta \right )f(y)$
+
+满足凸函数的定义，向量范数均是凸函数
+
+\subsection{证明Log-sum-exp函数是凸函数}
+$f(x)=log\sum_{k=1}^{n}e^{x_{k}}$
+
+又$\underset{i}{max}\; x_{i}\leq log\sum_{k=1}^{n}e^{x_{k}}\leq \underset{i}{max}\; x_{i}+logn$,求得:
+
+$\nabla^{2} f(x)=\frac{1}{\left ( \mathbf{1}^\mathrm{T}\mathbf{z} \right )^{2}}\left (  \left ( \mathbf{1}^\mathrm{T}\mathbf{z} \right )diag\left ( \mathbf{z} \right )-\mathbf{z}\mathbf{z}^\mathrm{T}\right )
+\; where\; \mathbf{z}=\left (  \begin{matrix}
+e^{x_{1}} ,& e^{x_{2}}  ,& \cdot \cdot \cdot \cdot \cdot \cdot e^{x_{k-1}} , & e^{x_{k}} 
+\end{matrix}\right )$
+
+根据柯西不等式：$\left ( \mathbf{a}^\mathrm{T}\mathbf{a} \right )\left ( \mathbf{b}^\mathrm{T}\mathbf{b} \right )\geq \left ( \mathbf{a}^\mathrm{T}\mathbf{b} \right )^{2}$
+
+for all v,
+
+$\mathbf{v}^\mathrm{T}\nabla^{2}f(x)\mathbf{v}=\frac{1}{\left ( \mathbf{1}^\mathrm{T}\mathbf{z} \right )^{2}}\left (  \left (\sum_{i=1}^{n}z_{i}\right )\left ( (\sum_{i=1}^{n}v_{i}^{2}z_{i} \right )-\left (  (\sum_{i=1}^{n}v_{i}z_{i}\right )^{2}\right )\geq 0
+\; with\; a_{i}=v_{i}\sqrt{z_{i}},b_{i}=\sqrt{z_{i}}$
+
+满足凸函数的二阶条件，该函数是凸函数
+
+\subsection{严格凸函数解集唯一}
+
+用反证法：
+
+若严格凸函数不只有一个最小值点,即有两个最小值点,设为x,y
+
+则由严格凸函数定义有：$f(\theta x+\left (1- \theta \right )y)\leq \theta f(x)+ \left (1- \theta \right )f(y)-\frac{m}{2} \theta\left (1- \theta \right )\Vert x-y \Vert^{2}=f(x)-\frac{m}{2} \theta\left (1- \theta \right )\Vert x-y \Vert^{2}< f(x)$
+
+与x是最小值点矛盾,所以严格凸函数解集唯一
+
+\subsection{一阶必要性定理证明}
+$if: \nabla f(x^{*})\neq 0,d=-\nabla f(x^{*})$
+
+$then: \nabla f(\mathbf{x} ^{*})^\mathrm{T}d=-\nabla f(\mathbf{x} ^{*})^\mathrm{T}\nabla f(\mathbf{x} ^{*})=-\Vert \nabla f(\mathbf{x} ^{*}) \Vert^{2}< 0$
+
+$\exists \sigma > 0,\: while\; \lambda \in \left ( 0,\sigma  \right ),f(\mathbf{x} ^{*}+\lambda d)< f(\mathbf{x} ^{*})$
+
+与x*处取得局部最小解矛盾，所以必要性成立，局部最小点处，一定有$\nabla f(\mathbf{x} ^{*})=  0$
+% 参考文献
+\newpage
+
+\begin{thebibliography}{99}
+    \bibitem{a}作者. \emph{文献}[M]. 地点:出版社,年份.
+    \bibitem{b}作者. \emph{文献}[M]. 地点:出版社,年份.
+\end{thebibliography}
+
+
+% 附录
+\newpage
+
+\begin{appendices}
+    \renewcommand{\thesection}{\Alph{section}}
+    \section{附录标题}
+        这里是附录. 
+\end{appendices}
+
+\end{document}

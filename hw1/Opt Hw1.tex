@@ -1,0 +1,147 @@
+\documentclass[12pt, a4paper, oneside, fontset=windows]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, appendix, bm, graphicx, hyperref, mathrsfs}
+
+\title{\textbf{最优化第一次作业}}
+\author{大数据001\\郅啸淇\\学号：2184114639}
+\date{\today}
+\linespread{1.5}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{example}[theorem]{例}
+\newtheorem{proposition}[theorem]{命题}
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\section{保凸运算}
+\subsection{保凸运算1}
+假设$A,B$为凸集,，且$x_{1},x_{2}\in A\cap B$
+
+因为$A$为凸集，所以$\theta x_{1} + (1-\theta)x_{2} \in A$
+
+同理$\theta x_{1} + (1-\theta)x_{2} \in B$
+
+所以$\theta x_{1} + (1-\theta)x_{2} \in A\cap B$
+
+所以$A\cap B$为凸集
+\subsection{保凸运算2}
+$\forall x_{1}, x_{2} \in aC + b$
+
+$\exists y_{1},y_{2} \in C$
+
+使得$\left\{\begin{matrix}
+    x_{1} = ay_{1}+b\\ 
+    x_{2} = ay_{2} + b 
+   \end{matrix}\right.$
+
+则$\forall \theta \in [0,1]$
+
+有$\theta x_{1}+ (1-\theta)x_{2} = \theta(ay_{1}+b) + (1 - \theta)(ay_{2} + b) = a[\theta y_{1} + (1-\theta)y_{2}]+b$
+
+因为$y_{1},y_{2} \in C$，故$\theta y_{1} +(1-\theta)y_{2} \in C$
+
+故$\theta x_{1} + (1 - \theta)x_{2} \in aC + b$
+
+故$aC+b$为凸集
+
+\subsection{保凸运算3}
+设$g(x) = f(Ax + b)$
+
+$dom g = \left \{ x|Ax +b \in dom f \right \}$
+
+设$x,y\in dom g, \theta \in [0,1]$
+
+有$g(\theta x +(1 - \theta y)) = f(A(\theta x + (1- \theta y))+ b) = f(A\theta x + Ay - A\theta y + b)$
+
+$=f(\theta (Ax + b) + (1-\theta)f(Ay + b)) \leq \theta f(Ax+b) + (1-\theta) f(Ax+b) $
+
+$= \theta g(x) + (1-\theta) g(y)$
+
+故$g(x)$为凸函数
+\subsection{保凸运算4}
+设$f(x) = g(Ax+b), dom f = \left \{ x|Ax+b \in dom g \right \}$
+
+已知$g(\theta x + (1-\theta)y) \leq \theta g(x) + (1-\theta)g(y)$
+
+有$g(\theta x + (1-\theta y)) = f(\theta (Ax+b)+ (1-\theta)(Ax+b))$
+
+又$\theta g(x) + (1-\theta)g(y) = \theta f(Ax+b) + (1-\theta)f(Ax+b)$
+
+故$f(\theta (Ax+b)+ (1-\theta)(Ax+b)) \leq \theta f(Ax+b) + (1-\theta)f(Ax+b)$
+
+$f(x)$为凸函数得证
+\section{无穷范数满足范数性质}
+\subsection{正定性}
+$max|x_{i}| \geq 0$
+
+并且若$\left \| x \right \|_{\infty } = 0$则$max|x_{i}| = 0$
+因此$x = 0$
+\subsection{齐次性}
+$\left \| tx \right \|_{\infty } = max|tx_{i}|$
+
+$|t|max|x_{i}| = |t|\left \| x \right \|_{\infty }$
+\subsection{三角不等式}
+${\left \| x+y \right \|_{\infty }^{2} - {\left \| x \right \|_{\infty } + \left \| y \right \|_{\infty }}^{2}} = {max|x+y|}^{2} - max|x^{2}| - max|y^{2}| - 2max|x|max|y|$
+
+$2maxxy - 2max|x||y| \leq 0$
+
+故$\left \| x+y \right \|_{\infty } \leq \left \| x \right \|_{\infty } + \left \| y \right \|_{\infty }$
+\section{向量范数为凸函数}
+设$f(x) = \left \| x \right \|$
+
+$\forall \theta \in [0,1], \forall x,y \ in dom f$
+
+有$f(\theta x + (1-\theta )y)  = \left \| \theta x +(1-\theta )y \right \|$
+
+由范数性质：
+
+$\left \| \theta x +(1-\theta )y \right \| \leq \left \| \theta x \right \| + \left \| (1-\theta)y \right \| = \theta \left \| x \right \| + (1-\theta) \left \| x \right \|$
+
+$= \theta f(x) + (1-\theta) f(y)$
+
+故向量范数为凸函数
+
+
+\section{$log-sum-exp$函数为凸函数}
+$f(x) = log(\sum_{k=1}^{n}e^{x_{k}})$
+$\triangledown _{2} f(x) = \frac{(\mathbf{1^{T}z)diag(\mathbf{z} - \mathbf{zz^{T}})}}{\mathbf{{1^{T}z}^{2}}}$
+
+$where$ $\mathbf{z} = (e^{x_{1}},e^{x_{2}},e^{x_{3}},e^{x_{4}}.....e^{x_{k-1}},e^{x_{k}})$
+
+根据柯西不等式$(\mathbf{a^{T}a})(\mathbf{b^{T}b}) \geq {(\mathbf{a^{T}b})}^{2}$
+
+$\forall \mathbf{f},$ $\mathbf{v^{T}}\triangledown^{2}f(x)\mathbf{v} = \frac{(\sum_{i=1}^{n}z_{i})((\sum_{i = 1}^{n}v_{i}^{2}z_{i})-(\sum_{i=1}^{n}v_{i}z_{i}))^{2}}{(\mathbf{1^{T}z})^{2}}\geq 0$
+
+$with$ $a_{i}= v_{i} \sqrt[]{z_{i}}, b_{i} = \sqrt[]{z_{i}}$
+
+满足凸函数的二阶条件，故$f(x)$为凸函数
+\section{严格凸函数极小值唯一}
+利用反证法，假设$f(x)$为严格凸函数，$x_{1},x_{2}$为其两个极小值点
+
+并且$f(x_{1}) \leq f(x_{2})$
+
+由严格凸定义有$f(\theta x_{1} + (1 -\theta) x_{2}) < \theta f(x_{1}) + (1-\theta)f(x_{2}), \forall \theta \in [0,1]$
+
+由条件有$\theta f(x_{1}) + (1-\theta)f(x_{2}) \leq \theta f(x_{2}) + (1-\theta)f(x_{2})$
+
+即$\theta f(x_{1}) + (1-\theta)f(x_{2}) \leq f(x_{2})$
+
+即$f(\theta x_{1} + (1 -\theta) x_{2}) < f(x_{2})$
+
+与假设$x_{2}$为极小值点矛盾
+
+故严格凸函数极小值唯一
+
+\section{一阶必要性定理证明}
+假设$x^{*}$为极小值点，但$\triangledown f(x^{*})\neq 0$
+
+设$q = -\left \| \triangledown f(x^{*}) \right \|$
+
+则$\exists p > 0$，使得$f(x_{*} +pq) < f(x^{*})$
+
+与$x^{*}$为极小值点矛盾，故$\triangledown f(x^{*})= 0$
+\end{document} 

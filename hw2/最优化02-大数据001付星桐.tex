@@ -1,0 +1,276 @@
+\documentclass[12pt, a4paper, oneside, fontset=windows]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, appendix, bm, graphicx, hyperref, mathrsfs}
+
+\title{\textbf{最优化第一次作业}}
+\author{付星桐}
+\date{\today}
+\linespread{1.5}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{example}[theorem]{例}
+\newtheorem{proposition}[theorem]{命题}
+
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+
+\setcounter{page}{0}
+\maketitle
+\thispagestyle{empty}
+
+
+
+\newpage
+% 添加目录
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\newpage
+\section{作业}
+
+\subsection{强凸函数相互等价性}
+（1）
+if:$g\left ( x \right )=f\left ( x \right )-\frac{m}{2}x ^\mathrm{T}x$ is convex
+
+then:$f(\theta x+\left ( 1-\theta  \right )y)=g\left (\theta x+\left ( 1-\theta  \right )y  \right )+\frac{m}{2} \Vert \theta x+\left ( 1-\theta  \right )y \Vert _2^{2}$
+
+$\leq \theta g\left ( x \right )+\left ( 1-\theta  \right )g\left ( y \right )+\frac{m}{2} \Vert \theta x+\left ( 1-\theta  \right )y \Vert _2^{2}$
+
+$= \theta f\left ( x \right )+\left ( 1-\theta  \right )f\left ( y \right )+\frac{m}{2} \Vert \theta x+\left ( 1-\theta  \right )y \Vert _2^{2}-\frac{m}{2}\theta \Vert x \Vert _2^{2}-\frac{m}{2}\left ( 1-\theta  \right )\Vert y \Vert _2^{2}$
+
+$=\theta f\left ( x \right )+\left ( 1-\theta  \right )f\left ( y \right )+\frac{m}{2}\left (\sum \left ( \theta x+\left ( 1-\theta  \right )y _{i} \right )^{2}-\theta  \sum x _{i}^{2}-\left ( 1-\theta  \right )\sum y _{i}^{2} \right )$
+
+$=\theta f\left ( x \right )-\left ( 1-\theta  \right )f\left ( y \right )+\frac{m}{2}\theta \left ( 1-\theta  \right )\left (  \sum x _{i}^{2}+\sum y _{i}^{2}- \sum 2x_{i}y _{i}\right )$
+
+$=\theta f\left ( x \right )-\left ( 1-\theta  \right )f\left ( y \right )+\frac{m}{2} \theta \left ( 1-\theta  \right )\Vert x-y \Vert _2^{2}$
+
+
+（2）
+$f(\theta x+\left ( 1-\theta  \right )y)\leq \theta f\left ( x \right )-\left ( 1-\theta  \right )f\left ( y \right )+\frac{m}{2} \theta \left ( 1-\theta  \right )\Vert x-y \Vert _2^{2}$
+
+$then:f(\theta x+\left ( 1-\theta  \right )y)-f\left ( y \right )+\theta \left ( f\left ( y \right )-f\left ( x \right ) \right )\leq -\frac{m}{2} \theta \left ( 1-\theta  \right )\Vert x-y \Vert _2^{2}$
+
+$then:\theta \left [ \nabla f\left ( x \right )-\nabla f\left ( y \right ) \right ]\left ( y-x \right )\leq -\frac{m}{2} \theta \left ( 1-\theta  \right )\Vert x-y \Vert _2^{2}$
+
+$then:\theta \left ( 1-\theta  \right )\left [ \nabla f\left ( x \right )-\nabla f\left ( y \right ) \right ]\left ( y-x \right )\leq -\frac{m}{2} \theta \left ( 1-\theta  \right )\Vert x-y \Vert _2^{2}$
+
+$then:\theta \left ( 1-\theta  \right )\left [ \nabla f\left ( y \right )-\nabla f\left ( x \right ) \right ]\left ( y-x \right )\geq \frac{m}{2} \theta \left ( 1-\theta  \right )\Vert x-y \Vert _2^{2}$
+
+
+（3）
+$if:x=y+tv$
+
+$then:\left (  \nabla f\left ( y+tv \right )-\nabla f\left ( y \right )\right )^{T}v\geq mt \Vert v \Vert_{2}^{2}$
+
+$then:\frac{\left (  \nabla f\left ( y+tv \right )-\nabla f\left ( y \right )\right )^{T}}{t}v\geq m \Vert v \Vert_{2}^{2}$
+
+令$t \rightarrow 0$根据方向导数公式：
+
+$v^{T} \nabla ^{2}f\left ( y \right )v\geq m\Vert v \Vert_{2}^{2}$
+
+即：$ \nabla ^{2}f\left ( y \right )\geq mI$
+
+（4）
+即证：$g\left ( x \right )=f\left ( x \right )-\frac{m}{2}x ^\mathrm{T}x$ is convex
+
+第四个不等式的二阶泰勒展开：$f\left ( y \right )\geq f\left ( x \right )+\nabla f\left (x\right )^{T}\left ( y-x \right )+\frac{m}{2} \Vert y-x \Vert_{2}^{2}$
+
+即：$f\left ( y \right )-\frac{m}{2} \Vert y\Vert_{2}^{2}\geq f\left ( x \right )-\frac{m}{2} \Vert x \Vert_{2}^{2}+\left [  \nabla f\left (x\right )^{T}-mx\right ]^{T}\left ( y-x \right )$
+
+即：$g\left ( y \right )\geq g\left ( x \right )+ \nabla g\left ( x \right )^{T} \left ( y-x \right )$
+
+满足凸函数的一阶条件，g（x）是凸函数
+\subsection{无穷范数的对偶范数是一范数}
+
+
+
+\subsection{临近算子的证明}
+(1)
+临近算子$\mathbf u=prox_{th}\left ( x \right )$的最优性条件为：
+
+$\mathbf x-\mathbf u\in t\partial h\left ( \mathbf{u}\right ) 
+=t\partial\left ( \frac{1}{2} \mathbf{u}^\mathrm{T} \mathbf A\mathbf{u}+\mathbf{b}^\mathrm{T}\mathbf{u}+\mathbf c\right )
+=t\left (\mathbf{b}+\mathbf{A}\mathbf{u} \right )
+=t\mathbf{b}+t\mathbf{A}\mathbf{u}$
+
+$then: \left ( \mathbf{I}+t \mathbf{A}\right ) \mathbf{u}=\mathbf{x}-t\mathbf{b}$
+
+$\mathbf{u}=\left (\mathbf{I}+t \mathbf{A} \right )^\mathrm{-1}\left ( \mathbf{x}-t\mathbf{b} \right )$
+
+(2)
+临近算子$\mathbf u=prox_{th}\left ( x \right )$的最优性条件为：
+
+$x_{i}- u_{i}\in t\partial h\left ({u_{i}}\right ) 
+=t\frac{1}{u_{i}}$
+
+$then:t=- u_{i}^{2}+x_{i}u_{i}=-\left ( u_{i}-\frac{x_{i}}{2} \right )^{2}-\frac{x_{i}^{2}}{4}$
+
+$then:u_{i}=\frac{x_{i}+\sqrt{x_{i}^{2}+4t}}{2},i=1,2,3......n$
+
+
+\subsection{临近算子基本运算规则的证明}
+(1)
+$if \; f\left (\mathbf  x \right )=ag\left (\mathbf  x \right )+b\; with\; a> 0,then:$
+
+$prox_{f}\left ( \mathbf x \right )=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+f \left (\mathbf z \right )\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+ag\left (\mathbf  z \right )+b\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+ag\left (\mathbf  z \right )\right \}$
+
+$=prox_{ag}\left ( \mathbf x \right )$
+
+(2)
+$if \; f\left (\mathbf  x \right )=g\left (\mathbf  x \right )+\mathbf a ^\mathrm{T}\mathbf  x + b\; ,then:$
+
+$prox_{f}\left ( \mathbf x \right )=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+f \left (\mathbf z \right )\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+g\left (\mathbf  z \right )+\mathbf a ^\mathrm{T}\mathbf  z + b\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z \Vert _2^{2}+\mathbf a ^\mathrm{T}\mathbf z+g\left (\mathbf  z \right )\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z \Vert _2^{2}-\left \langle \mathbf z ,\mathbf x -\mathbf a \right \rangle+g\left (\mathbf  z \right )\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z-\left ( \mathbf x-\mathbf a \right ) \Vert _2^{2}+g\left (\mathbf  z \right )\right \}$
+
+$=prox_{g}\left ( \mathbf x-\mathbf a \right )$
+
+(3)
+$if \; f\left (\mathbf  x \right )=g\left (\mathbf  x \right )+\frac{\rho }{2}\Vert \mathbf x- \mathbf a\Vert _2^{2}\; ,then:$
+
+$prox_{f}\left ( \mathbf x \right )=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+f \left (\mathbf z \right )\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+g\left (\mathbf  z \right )+\frac{\rho }{2}\Vert \mathbf z- \mathbf a\Vert _2^{2}\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1+\rho }{2}\Vert \mathbf z \Vert _2^{2}-\left \langle \mathbf z ,\mathbf x +\rho \mathbf a \right \rangle+g\left (\mathbf  z \right )\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{\frac{1}{2}\Vert \mathbf z-\left ( \frac{1}{1+\rho}\mathbf x-\frac{\rho}{1+\rho}\mathbf a \right ) \Vert _2^{2}+ \frac{1}{1+\rho }  g\left (\mathbf  z \right )\right \}$
+
+$=prox_{\frac{1}{1+\rho }g}\left (\frac{1}{1+\rho } \mathbf x+\frac{\rho }{1+\rho }\mathbf a \right )$
+
+(4)
+$if \; f\left (\mathbf  x \right )=g\left (a\mathbf  x +\mathbf b\right )+\; with\; a\neq 0\; ,then:$
+
+$prox_{f}\left ( \mathbf x \right )=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+f \left (\mathbf z \right )\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z - \mathbf x \Vert _2^{2}+g\left (a\mathbf z+\mathbf b \right )\right \}$
+
+$=arg\underset{\mathbf z}{min}\left \{ \frac{1}{2}\Vert \mathbf z \Vert _2^{2}-\left \langle \mathbf z ,\mathbf x \right \rangle+g\left (a\mathbf z+\mathbf b \right )\right \}$
+
+$if \;\mathbf t=a\mathbf z+b,then:$
+
+$\mathbf t=arg\underset{\mathbf t}{min}\left \{ \frac{1}{2}\Vert \frac{\mathbf t-\mathbf b}{a} - \mathbf x \Vert _2^{2}+g \left (\mathbf t \right )\right \}$
+
+$=arg\underset{\mathbf t}{min}\left \{ \frac{1}{2a^{2}}\Vert \mathbf t - \left ( a\mathbf x +\mathbf b \right )\Vert _2^{2}+g \left (\mathbf t \right )\right \}$
+
+$=arg\underset{\mathbf t}{min}\left \{ \frac{1}{2}\Vert \mathbf t - \left ( a\mathbf x +\mathbf b \right )\Vert _2^{2}+a^{2}g \left (\mathbf t \right )\right \}$
+
+$=prox_{a^{2}g}\left ( a\mathbf x+\mathbf b\right )$
+
+$then:prox_{f}\left ( \mathbf x \right )=\mathbf z=\frac{\mathbf t-\mathbf b}{a}=\frac{1}{a}\left [prox_{a^{2}g}\left ( a\mathbf x+\mathbf b\right )-\mathbf b  \right ]$
+
+\newpage
+\section{作业2}
+
+\subsection{三种方法总结}
+
+列表格:
+
+\begin{table}[h]
+    \begin{tabular}{|l|l|l|l|l}
+    \cline{1-4}
+         & 梯度法 & 次梯度法 & 近似点梯度法 &  \\ \cline{1-4}
+    收敛速率 &     &      &        &  \\ \cline{1-4}
+         &     &      &        &  \\ \cline{1-4}
+         &     &      &        &  \\ \cline{1-4}
+    \end{tabular}
+    \end{table}
+
+\subsection{证明共轭函数总是为一凸函数}
+可以看成是一系列关于 y 的凸函数取上确界
+
+等价于要证明：$f^{*}\left ( \theta t_{1}+\left ( 1-\theta  \right )t_{2} \right )\leq \theta f^{*}\left ( t_{1} \right )+\left ( 1-\theta  \right )f^{*}\left ( t_{2} \right )$
+
+代入共轭函数的定义，上述不等式等价于:
+
+$\underset{x \in  dom\left ( f \right )}{max}\left \{\left ( \theta t_{1}+\left ( 1-\theta  \right )t_{2} \right )x-f\left ( x \right )  \right \}\leq \theta \underset{x \in  dom\left ( f \right )}{max}\left \{t_{1} x-f\left ( x \right )  \right \} +\left ( 1-\theta  \right ) \underset{x \in  dom\left ( f \right )}{max}\left \{t_{2} x-f\left ( x \right )  \right \}$
+
+左式等价于：
+
+$\underset{x \in  dom\left ( f \right )}{max}\left \{ \theta \left ( t_{1}x-f\left ( x \right ) \right )+\left ( 1-\theta  \right ) \left ( t_{2}x-f\left ( x \right ) \right ) \right \}$
+
+假设在$x_{0}$取到最大值，即：$\theta \left ( t_{1}x_{0}-f\left ( x_{0} \right ) \right )+\left ( 1-\theta  \right ) \left ( t_{2}x_{0}-f\left ( x_{0} \right ) \right ) $
+
+又：
+
+$\theta \left ( t_{1}x_{0}-f\left ( x_{0} \right ) \right )\leq  \underset{x \in  dom\left ( f \right )}{max}\left \{ \theta \left ( t_{1}x_{0}-f\left ( x_{0} \right ) \right ) \right \} $
+
+$\left ( 1-\theta  \right ) \left ( t_{2}x_{0}-f\left ( x_{0} \right ) \right )\leq  \underset{x \in  dom\left ( f \right )}{max}\left \{ \left ( 1-\theta  \right )  \left ( t_{2}x_{0}-f\left ( x_{0} \right ) \right ) \right \} $
+
+所以原式得证
+
+\subsection{证明 Lagrange对偶问题总是一凸优化问题}
+原问题：
+
+$\underset{x}{min}f\left ( x \right )$
+
+$s.t.\; g_{i}\left ( x \right )\leq 0,i=1,2,\cdots \cdots ,m$
+
+$h_{j}\left ( x \right )=0,j=1,2,\cdots \cdots ,p$
+
+进行一次拉格朗日乘子法，转换为:
+
+$\underset{x,\lambda ,\nu }{min}L\left ( x,\lambda ,\nu  \right )=f\left ( x \right )+\sum_{i=1}^{m}\lambda _{i}g_{i}\left ( x \right )+\sum_{i=1}^{p}\nu  _{i}h_{i}\left ( x \right )$
+
+再求一次对偶问题：
+
+$\underset{\lambda ,\nu }{max}\underset{x }{min}L\left ( x,\lambda ,\nu  \right )$
+
+$s.t.\; \lambda \geq 0$
+
+首先约束条件一定是凸函数，因为它是线性的，也就是说其实我们现在只要证明:$\underset{x }{min}L\left ( x,\lambda ,\nu  \right )$是凸函数即可
+
+$-\underset{x }{min}L\left ( x,\lambda ,\nu  \right )=-k_{1}\lambda -k_{2}\nu -b$ if $k_{1}=g\left ( x \right ),k_{2}=h\left ( x \right ),b=f\left ( x \right )$
+
+上面跟x xx有关的全部是一个定值。这就是一个线性变化，或者说仿射变换。然后就用到了我们前面用到的那个重要定理：仿射集一定是凸集。所以说这是一个凸函数。
+
+\subsection{等式约束范数极小化}
+$f_{0}^{*}\left ( y \right )=\underset{x}{sup}\left ( y^{T} x -\Vert x \Vert\right )$
+
+根据：$\Vert v \Vert_{*}=sup_{\Vert u \Vert\leq 1}u^{T}v is dual norm of \Vert \cdot  \Vert$
+
+又：$\Vert x \Vert=\underset{x}{sup}\left ( y^{T} x \right ),\Vert y  \Vert_{*}\leq 1$
+
+如果$\Vert y  \Vert_{*}\leq 1,  y^{T} x \leq \Vert x  \Vert ,$ 显然x=0时取等号
+
+又：$\Vert y \Vert_{*}=\underset{x}{sup}\left ( x^{T} y \right )> 1,\Vert x  \Vert\leq 1$
+
+如果$\Vert y  \Vert_{*}> 1,  \exists x , \Vert x \Vert \leq 1,then x^{T}y>1$
+
+$f_{0}^{*}\left ( y \right )\geq y^{T}\left ( tx \right )-\Vert tx  \Vert=t\left ( y^{T}x-\Vert x  \Vert \right )> 0$
+
+$t\rightarrow \infty, f_{0}^{*}\left ( y \right )\rightarrow \infty$
+
+所以:$f_{0}^{*}\left ( y \right )=\left\{\begin{matrix}
+    0\; \;\Vert y \Vert_{*}\leq 1 \\ 
+    \infty\; \; otherwise
+    \end{matrix}\right.$
+等式约束范数极小化得证
+\section{作业3}
+
+\subsection{SVM的KKT条件}
+
+\subsection{岭回归的对偶问题}
+
+\subsection{logistic regression}
+
+\subsection{实例证明}
+\end{document}
